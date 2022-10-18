@@ -14,7 +14,7 @@ RSpec.describe Piece do
     end
   end
 
-  xdescribe '#symbols' do
+  xdescribe '#symbol' do
     it 'can return a player symbol' do
       expect(@piece.symbol).to eq('X')
     end
@@ -33,7 +33,7 @@ RSpec.describe Piece do
 
     end
   end
-  
+
   xdescribe '#y_pos' do
     it 'can return postion' do
 
