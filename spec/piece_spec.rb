@@ -24,7 +24,17 @@ RSpec.describe Piece do
     end
   end
 
-  xdescribe '#own_position' do
+  xdescribe '#x_pos' do
+    it 'can return postion' do
+      
+    end
+
+    it 'can return a different position' do
+
+    end
+  end
+  
+  xdescribe '#y_pos' do
     it 'can return postion' do
 
     end
