@@ -9,19 +9,27 @@ RSpec.describe Piece do
   end
 
   describe '#initialize' do
-    it 'exists and has readable attributes' do
+    it 'exists' do
       expect(@piece).to be_a(Piece)
     end
   end
 
   xdescribe '#symbols' do
-    it 'can have piece for player and computer' do
+    it 'can return a player symbol' do
+      expect(@piece.symbol).to eq('X')
+    end
 
+    it 'can return a computer symbol' do
+       expect(@piece.symbol).to eq('O')
     end
   end
 
   xdescribe '#own_position' do
-    it "can check postion based on 'x' and 'y' axis" do
+    it 'can return postion' do
+
+    end
+
+    it 'can return a different position' do
 
     end
   end
