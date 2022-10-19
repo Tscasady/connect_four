@@ -38,4 +38,12 @@ RSpec.describe Board do
       expect(board.valid_input?(input2)).to be false
     end
   end
+
+  describe '#valid_col' do
+    it 'checks if column is full' do
+      #rewrite test with pieces
+      board = Board.new
+
+      expect(board.valid_col('D')).to be true
+    end
 end
