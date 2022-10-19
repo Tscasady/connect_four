@@ -27,4 +27,13 @@ RSpec.describe Board do
       expect(board.game_state).to eq 'none'
     end
   end
+
+  describe '#valid_input?' do
+    it 'returns a boolean for whether or not the input is a valid letter' do
+      board = Board.new
+      input = 'b'
+
+      expect(board.valid_input?(input)).to be true
+    end
+  end
 end
