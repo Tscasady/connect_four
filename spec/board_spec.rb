@@ -97,6 +97,21 @@ RSpec.describe Board do
     end
   end
 
+  describe '#guaranteed_symbol' do
+    it "returns an 'X', 'O', or '.' " do
+      board = Board.new
+      board.place_piece('X', 'A')
+      board.place_piece('O', 'A')
+      
+      symbol = board.guaranteed_symbol(0)
+      symbol1 = board.guaranteed_symbol(1)
+      symbol2 = board.guaranteed_symbol(2)
+      expect(symbol).to be 'X'
+      expect(symbol).to be 'O'
+      expect(symbol).to be '.'
+    end
+  end
+
 
     
 end
