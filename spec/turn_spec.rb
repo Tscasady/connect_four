@@ -16,16 +16,17 @@ RSpec.describe Turn do
   describe '#get_human_input' do
     xit '' do
       turn = Turn.new('X')
-      expect get_human_input to be called
+      human_choice = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
+      expect(human_choice.include?(turn.get_human_input)).to be(true)
     end
   end
 
   describe '#get_computer_input' do
-    it '' do
+    it 'returns a random letter between A..G' do
       turn = Turn.new('O')
       computer_choice = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
-      player_input = turn.get_computer_input
-      expect(computer_choice.include?(player_input)).to be(true)
+      expect(computer_choice.include?(turn.get_computer_input)).to be(true)
+      expect(computer_choice.include?(turn.get_computer_input)).to be(true)
     end
   end
 
