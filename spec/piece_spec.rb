@@ -5,7 +5,7 @@ require './lib/piece'
 
 RSpec.describe Piece do
   before (:each) do
-    @piece = Piece.new()
+    @piece = Piece.new("X", 3, 5)
   end
 
   describe '#initialize' do
@@ -14,12 +14,12 @@ RSpec.describe Piece do
     end
   end
 
-  xdescribe '#symbol' do
+  describe '#symbol' do
     it 'can return a player symbol' do
       expect(@piece.symbol).to eq('X')
     end
 
-    it 'can return a computer symbol' do
+    xit 'can return a computer symbol' do
        expect(@piece.symbol).to eq('O')
     end
   end
