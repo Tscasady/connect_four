@@ -56,4 +56,16 @@ RSpec.describe Board do
       expect(board.full_board?).to be false
     end
   end
+
+  describe 'place_piece' do
+    it 'makes a new piece and adds it to grid' do
+      board = Board.new
+      board.place_piece('X', 'A')
+
+      expect(board.columns[0][0]).to be_a Piece
+    end
+  end
+
+
+    
 end
