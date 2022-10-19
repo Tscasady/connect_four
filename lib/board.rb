@@ -8,12 +8,12 @@ class Board
     @game_state = 'none' #consider relocating depending on win_check and game class logic
   end
 
-  def valid_input?(input)
-    @col_indices.keys.include?(input.upcase)
+  def valid_player_input?(player_input)
+    @col_indices.keys.include?(player_input.upcase)
   end
 
-  def valid_col(input)
-    @columns[@col_indices[input]].length < 7
+  def valid_col(player_input)
+    @columns[@col_indices[player_input]].length < 7
   end
 
   def full_board?
