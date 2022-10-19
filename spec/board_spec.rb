@@ -64,6 +64,22 @@ RSpec.describe Board do
 
       expect(board.columns[0][0]).to be_a Piece
     end
+
+    it 'assigns piece appropriate x coord' do
+      board = Board.new
+      board.place_piece('X', 'A')
+      board.place_piece('O', 'D')
+
+      expect(board.columns[3][0].x_pos).to be 3
+    end
+
+    it 'assigns piece appropriate y coord' do
+      board = Board.new
+      board.place_piece('X', 'A')
+      board.place_piece('O', 'A')
+
+      expect(board.columns[0][1].y_pos).to be 1
+    end
   end
 
   describe '#display_board' do
