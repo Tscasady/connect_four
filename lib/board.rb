@@ -35,6 +35,17 @@ class Board
     piece.y_pos = @columns[piece_xpos].index(piece)
   end
 
+  def display_board
+    #generate 7 rows to be displayed by asking
+    #each element of the grid what its symbol is.
+    count = 5
+    output = []
+    6.times do
+      @columns.each {|column| output << "#{guaraunteed_symbol(count)} + ' '"}
+    end
+
+  end
+
 
 
 
