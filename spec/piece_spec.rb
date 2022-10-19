@@ -5,7 +5,7 @@ require './lib/piece'
 
 RSpec.describe Piece do
   before (:each) do
-    @piece = Piece.new("X", 3, 5)
+    @piece = Piece.new("X", 3)
   end
 
   describe '#initialize' do
