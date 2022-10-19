@@ -18,7 +18,7 @@ RSpec.describe Board do
     it 'has an array of seven empty column arrays' do
       board = Board.new
 
-      expect(board.grid).to eq [[],[],[],[],[],[],[]] 
+      expect(board.columns).to eq [[],[],[],[],[],[],[]] 
     end
 
     it 'has a game_state' do
@@ -46,4 +46,14 @@ RSpec.describe Board do
 
       expect(board.valid_col('D')).to be true
     end
+  end
+
+  describe '#full_board?' do
+  #double check with full board
+    it 'checks if the board is full' do
+      board = Board.new
+
+      expect(board.full_board?).to be false
+    end
+  end
 end
