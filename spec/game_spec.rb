@@ -10,4 +10,13 @@ RSpec.describe Game do
       expect(game).to be_a(Game)
     end
   end
+
+  describe '#play_game' do
+    it '' do
+    
+
+    end
+  end
+
+  def '#'
 end
