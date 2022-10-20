@@ -1,9 +1,20 @@
+require './lib/piece'
+require './lib/null_piece'
+
 class Board
 
   attr_reader :col_indices, :columns, :game_state
 
   def initialize()
-    @col_indices = {'A'=>0, "B" =>1, "C"=>2, "D"=>3, "E"=>4, "F"=>5, "G"=>6}
+    @col_indices = {
+                    "A" => 0, 
+                    "B" => 1, 
+                    "C" => 2, 
+                    "D" => 3, 
+                    "E" => 4, 
+                    "F" => 5, 
+                    "G" => 6
+                  }
     @columns = [[],[],[],[],[],[],[]]
     @game_state = 'none' #consider relocating depending on win_check and game class logic
   end

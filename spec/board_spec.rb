@@ -8,11 +8,19 @@ RSpec.describe Board do
       expect(board).to be_a Board
     end
 
-    xit 'has a column index hash' do
+    it 'has a column index hash' do
       #unexpected Rspec hash complaints
       board = Board.new
 
-      expect(board.col_indices).to eq {}
+      expect(board.col_indices).to be == {
+        "A" => 0, 
+        "B" => 1, 
+        "C" => 2, 
+        "D" => 3, 
+        "E" => 4, 
+        "F" => 5, 
+        "G" => 6
+      }
     end
 
     it 'has an array of seven empty column arrays' do
