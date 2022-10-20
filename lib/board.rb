@@ -57,8 +57,13 @@ class Board
 
   end
 
-
-
+  
+  def guaranteed_symbol(piece)
+    if piece.nil?
+      NullPiece.new.symbol
+    else
+      piece.symbol
+    end
+  end
 
 end
-

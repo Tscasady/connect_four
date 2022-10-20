@@ -110,13 +110,19 @@ RSpec.describe Board do
       board = Board.new
       board.place_piece('X', 'A')
       board.place_piece('O', 'A')
+
+      piece1 = board.columns[0][0]
+      piece2 = board.columns[0][1]
       
-      symbol = board.guaranteed_symbol(0)
-      symbol1 = board.guaranteed_symbol(1)
-      symbol2 = board.guaranteed_symbol(2)
-      expect(symbol).to be 'X'
-      expect(symbol).to be 'O'
-      expect(symbol).to be '.'
+      #An element that does not exist
+      piece3 = board.columns[4][3]
+
+      symbol = board.guaranteed_symbol(piece1)
+      symbol1 = board.guaranteed_symbol(piece2)
+      symbol2 = board.guaranteed_symbol(piece3)
+      expect(symbol).to eq 'X'
+      expect(symbol1).to eq 'O'
+      expect(symbol2).to eq '.'
     end
   end
 
