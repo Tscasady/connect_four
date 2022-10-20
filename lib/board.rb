@@ -50,11 +50,13 @@ class Board
     #generate 7 rows to be displayed by asking
     #each element of the grid what its symbol is.
     count = 5
-    output = []
+    grid = []
     6.times do
-      @columns.each {|column| output << "#{guaraunteed_symbol(count)} + ' '"}
+      @columns.each {|column| grid << "#{guaranteed_symbol(column[count])}" + ' '}
+      count -= 1
+      grid << "\n"
     end
-
+    grid.join
   end
 
   

@@ -94,14 +94,16 @@ RSpec.describe Board do
     it 'returns a string' do
       board = Board.new
 
-      expect(board.display_board).to eq '. . . . . . .\n'
+      expect(board.display_board).to be == (
+      ". . . . . . . \n. . . . . . . \n. . . . . . . \n. . . . . . . \n. . . . . . . \n. . . . . . . \n"
+      )
     end
 
     it 'can return a different string if a piece is placed' do
       board = Board.new
       board.place_piece('X', 'A')
 
-      expect(board.display_board).to eq 'X . . . . . .\n'
+      expect(board.display_board).to eq ". . . . . . . \n. . . . . . . \n. . . . . . . \n. . . . . . . \n. . . . . . . \nX . . . . . . \n"
     end
   end
 
