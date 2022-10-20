@@ -14,7 +14,7 @@ RSpec.describe Turn do
   end
 
   describe '#get_human_input' do
-    xit '' do
+    it '' do
       turn = Turn.new('X')
       human_choice = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
       expect(human_choice.include?(turn.get_human_input)).to be(true)
