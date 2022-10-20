@@ -13,6 +13,14 @@ class Turn
     gets.chomp.upcase
   end
 
+  def get_input(symbol)
+    if symbol == 'X'
+      get_human_input
+    else
+      get_computer_input
+    end
+  end
+
 end
 
 
