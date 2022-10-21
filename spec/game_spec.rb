@@ -47,6 +47,12 @@ RSpec.describe Game do
     end
   end
 
+  describe '#end_game' do
+    it "will check game state to return a message" do
+
+    end
+  end
+
     
 
 

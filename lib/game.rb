@@ -25,25 +25,25 @@ class Game
         puts 'Invaild entry, please try again. Enter p to play. Enter q to quit.'
         do_menu_command(get_main_menu_input)
       end
-    
-    end
+  end
 
 
-    def test_menu
-      welcome_message
-      do_menu_command(get_main_menu_input)
-    end
-    def play
-      welcome_message
-      #if human.has_lost == true && computer.has_lost == false
-        #game_state = computer wins
-    # elsif human.has_lost == false && computer.has_lost == true
-        # game_state = human wins
-    # else
-    #   game_state = tie
-    end
+  def test_menu
+    welcome_message
+    do_menu_command(get_main_menu_input)
+  end
+  # def play
+  #   welcome_message
+  # end
 
-    def end_game
-      
+  def end_game_message
+    if game_state == player
+      puts "Congratulations #{human_name}, you've won!"
+    elsif game_state == computer
+      puts "Sorry the comupter has won."
+    else 
+      puts "It's a tie, no one wins."
     end
+    do_menu_command
+  end
 end
