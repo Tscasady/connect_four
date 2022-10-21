@@ -44,6 +44,8 @@ class Board
 
     #give piece y coord in grid
     piece.y_pos = @columns[piece_xpos].index(piece)
+    
+    piece
   end
 
   def display_board
@@ -52,7 +54,11 @@ class Board
     count = 5
     grid = []
     6.times do
-      @columns.each {|column| grid << "#{guaranteed_symbol(column[count])}" + ' '}
+      @columns.each_index do |index| 
+        x_pos = index
+        y_pos = count
+        grid << "#{fetch_piece(x_pos, y_pos).symbol}" + ' '
+      end
       count -= 1
       grid << "\n"
     end
@@ -60,11 +66,19 @@ class Board
   end
 
   
-  def guaranteed_symbol(piece)
-    if piece.nil?
-      NullPiece.new.symbol
+  def fetch_piece(x_pos, y_pos)
+    #This method retrives a piece at a given location.
+    #If that location points to a nil, it creates a standin null piece
+    #This null piece can answer the message .symbol 
+
+    piece = @columns[x_pos][y_pos]
+
+    if (x_pos < 0 || y_pos < 0) #prevents negative indices from 'wrapping' the board
+      NullPiece.new 
+    elsif piece.nil? 
+      NullPiece.new
     else
-      piece.symbol
+      piece
     end
   end
 

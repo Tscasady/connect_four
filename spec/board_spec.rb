@@ -107,24 +107,26 @@ RSpec.describe Board do
     end
   end
 
-  describe '#guaranteed_symbol' do
-    it "returns an 'X', 'O', or '.' " do
+  describe '#fetch_piece' do
+    it "returns a piece" do
       board = Board.new
       board.place_piece('X', 'A')
       board.place_piece('O', 'A')
 
-      piece1 = board.columns[0][0]
-      piece2 = board.columns[0][1]
+      piece1 = board.fetch_piece(0, 0)
+      piece2 = board.fetch_piece(0, 1)
       
       #An element that does not exist
-      piece3 = board.columns[4][3]
+      piece3 = board.fetch_piece(4 ,3)
 
-      symbol = board.guaranteed_symbol(piece1)
-      symbol1 = board.guaranteed_symbol(piece2)
-      symbol2 = board.guaranteed_symbol(piece3)
-      expect(symbol).to eq 'X'
-      expect(symbol1).to eq 'O'
-      expect(symbol2).to eq '.'
+      #A negative index
+      piece4 = board.fetch_piece(-1, 0)
+
+      
+      expect(piece1.symbol).to eq 'X'
+      expect(piece2.symbol).to eq 'O'
+      expect(piece3).to be_a NullPiece
+      expect(piece4).to be_a NullPiece
     end
   end
 
