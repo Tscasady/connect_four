@@ -6,13 +6,15 @@ require './lib/game'
 # require './lib/win_check'
 
 class Game
-  attr_reader :game_state, :welcome_message
+  attr_accessor :game_state
+  attr_reader :welcome_message
   def initialize
     #game_state win, player, computer, tie
     @game_state = 'none'
     @welcome_message = "Welcome to Connect Four\n " + "Enter p to play. Enter q to quit."
     @board = Board.new
-    @win_check = Win_check.new(@board)
+    # @win_check = Win_check.new(@board)
+  end
 
   def get_main_menu_input
       gets.chomp.downcase
@@ -44,14 +46,15 @@ class Game
   end
 
   def end_game_message
-    if win_check.game_state == 'player'
+    #add win_check.game_state
+    if game_state == 'player'
       puts "Congratulations X, you've won!"
-    elsif win_check.game_state == 'computer'
+    elsif game_state == 'computer'
       puts "Sorry the comupter has won."
     else 
       puts "It's a tie, no one wins."
     end
-    #create new game object
+    Game.new.play
   end
 
 end

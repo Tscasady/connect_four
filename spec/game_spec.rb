@@ -50,7 +50,8 @@ RSpec.describe Game do
   describe '#end_game_message' do
     it "will check game state to return a message" do
       game = Game.new
-      expect(game.).to eq()
+      game.game_state = 'player'
+      expect(game.end_game_message).to eq("Congratulations X, you've won!")
     end
   end
 
