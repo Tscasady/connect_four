@@ -7,26 +7,37 @@ describe WinCheck do
       board = Board.new
       piece = board.place_piece('X', 'A')
 
-      expect(WinCheck.new(piece)).to be_a WinCheck
+      expect(WinCheck.new(piece, board)).to be_a WinCheck
     end
 
     it 'is initialized with a piece' do
       board = Board.new
       piece = board.place_piece('X', 'A')
 
-      expect(WinCheck.new(piece).piece).to be_a Piece
+      expect(WinCheck.new(piece, board).piece).to be_a Piece
     end
-
-    it 'has direction data' do
-      board = Board.new
-      piece = board.place_piece('X', 'A')
-
-      expect(WinCheck.new(piece).directions).to be == {
-        'UP'    => [0 , 1], 
-        'DOWN'  => [0, -1], 
-        'LEFT'  => [-1, 0], 
-        'RIGHT' => [1, 0]
-        }
-      end
   end
+
+  describe '#check_all' do
+    'checks in the 8 ordinal and cardinal directions for a matching piece' do
+    end
+  end
+
+  describe '#check' do
+    it 'recursively checks for a matching piece in the given direction' do
+      board = Board.new
+      board.place_piece('X', 'A')
+      board.place_piece('X', 'A')
+      board.place_piece('X', 'A')
+      board.place_piece('X', 'A')
+      piece = board.place_piece('X', 'A')
+      win_check = WinCheck.new(piece,board)
+      
+      expect(WinCheck.new(piece, board).check_all(piece, board)).to be 4
+    end
+  end
+
+  describe '#check_below' do
+  end
+
 end
