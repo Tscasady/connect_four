@@ -21,6 +21,10 @@ class Turn
     end
   end
 
+  def get_checked_input(symbol, validity_checker)
+    player_input = turn.get_input(symbol)
+    validity_checker.validity_check
+  end
 end
 
 
