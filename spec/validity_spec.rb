@@ -2,7 +2,7 @@ require './lib/board'
 require './lib/piece'
 require './lib/turn'
 require './lib/null_piece'
-require './lib/game'
+# require './lib/game'
 require './lib/validity'
 
 RSpec.describe Validity do
@@ -26,7 +26,7 @@ RSpec.describe Validity do
     end
   end
 
-  describe '#valid_col' do
+  describe '#valid_col?' do
   it 'checks if column is full' do
     #rewrite test with pieces
     board = Board.new
@@ -40,9 +40,29 @@ RSpec.describe Validity do
     input_2 = 'A'
     validity = Validity.new(board)
 
-    expect(validity.valid_col(input)).to be false
-    expect(validity.valid_col(input_2)).to be true
+    expect(validity.valid_col?(input)).to be false
+    expect(validity.valid_col?(input_2)).to be true
 
+    end
+  end
+
+  describe '#validity_checks' do
+    it 'can check valid player input and valid column' do
+      board = Board.new
+      board.place_piece('X', 'D')
+      board.place_piece('X', 'D')
+      board.place_piece('X', 'D')
+      board.place_piece('X', 'D')
+      board.place_piece('X', 'D')
+      board.place_piece('X', 'D')
+      input = 'D'
+      input_2 = 'Z'
+      input_3 = 'A'
+      validity = Validity.new(board)
+
+      expect(validity.validity_checks(input)).to eq(false)
+      expect(validity.validity_checks(input_2)).to eq(false)
+      expect(validity.validity_checks(input_3)).to eq(true)
     end
   end
 
