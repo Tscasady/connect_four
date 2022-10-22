@@ -13,13 +13,20 @@ class Game
     @game_state = 'none'
     @welcome_message = "Welcome to Connect Four\n " + "Enter p to play. Enter q to quit."
     @board = Board.new
+    @turns = []
+    @validity = Validity.new
     # @win_check = Win_check.new(@board)
   end
 
   def get_main_menu_input
       gets.chomp.downcase
   end
-
+  
+  def start 
+    puts @welcome_message
+    do_menu_command(get_main_menu_input)
+  end
+  
   def do_menu_command(letter)
       if letter == 'p'
         puts 'Choose a valid location to place your piece.'
@@ -38,10 +45,32 @@ class Game
   #   welcome_message
   #   do_menu_command(get_main_menu_input)
   # end
+  def add_turn(turn)
+    @turns << turn
+  end
+
+  def get_symbol_for_turn
+    if turns.length.even?
+      'X'
+    else turns.length.odd?
+      'O'
+  end
 
   def play
-    puts @welcome_message
-    do_menu_command(get_main_menu_input)
+    while game_state == 'none' do
+      board.display_board
+      turn = Turn.new(get_symbol_for_turn)
+      add_turn(turn)
+      player_input = turn.get_input
+      #dry,recursion fix
+      if @validity.valid_player_input?(player_input) && @validity.valid_col?(player_input) true
+        move on
+      else 
+        puts "That is an invalid choice, please try again."
+        player_input = turn.get_input
+      piece = board.place_piece(turn.symbol, player_input)
+      #win_check.check_all(piece)
+    end
     end_game_message
   end
 
