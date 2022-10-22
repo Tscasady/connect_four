@@ -30,4 +30,13 @@ RSpec.describe Turn do
     end
   end
 
+  #depends on player input did not test
+  # describe '#get_checked_input' do
+  #   it 'can return an input' do
+  #     turn = Turn.new('O')
+  #     validity = Validity.new
+  #     expect(turn.get_checked_input(turn.symbol, validity)).to eq()
+  #   end
+  # end
+
 end

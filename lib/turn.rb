@@ -21,6 +21,17 @@ class Turn
     end
   end
 
+  def get_checked_input(symbol, validity_checker)
+    player_input = get_input(symbol)
+    if validity_checker.validity_checks(player_input)
+      player_input
+    else
+       puts "That is an invalid choice, please try again."
+      get_checked_input(symbol, validity_checker)
+    end
+   
+
+  end
 end
 
 
