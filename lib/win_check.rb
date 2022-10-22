@@ -11,32 +11,41 @@ class WinCheck
     #a position with a symbol that does not match the original piece.
 
   def check_all(piece)
-   
+    counts = []
     #x_coord modifier
     (-1..1).each do |x_mod|
       #y_coord modifier
       (-1..1).each do |y_mod|
+        
         check_count = 0
-        piece_to_test = @board.columns[piece.x_pos + x_mod][piece.y_pos + y_mod]
-        check(piece, piece_to_test, x_mod, y_mod, check_count)
-        #reverse check. For any direction, we need to also check in the opposite direction and add it to our total checks,
+        #This line skips (0,0) which would check the piece against itself, infinitely.
+        next if x_mod == 0 && y_mod == 0
+        
+        piece_to_test = @board.fetch_piece((piece.x_pos + x_mod), (piece.y_pos + y_mod))
+        
+        count = check(piece, piece_to_test, x_mod, y_mod, check_count)
+        #Reverse check. For any direction, we need to also check in the opposite direction and add it to our total checks,
         #in case our piece is in the middle of a line of connected pieces. 
         #this is accomplish by inverting the sign of our coordinate modifiers.
         x_mod, y_mod = -x_mod, -y_mod
-        check(piece, piece_to_test, x_mod, y_mod, check_count )
+        piece_to_test = @board.fetch_piece((piece.x_pos + x_mod), (piece.y_pos + y_mod))
+        reverse_count = check(piece, piece_to_test, x_mod, y_mod, check_count )
+        total = count + reverse_count
+        counts << total
       end
     end
+    
+    counts.any?{|count| count >= 3}
   end
 
 
   def check(piece, piece_to_test, x_mod, y_mod, check_count) 
-    #escape condition
-    #base case: 1 or more, inputs for which the function produces a result that continues the recursion (opposite of escape condition)
-    #knowing if and when recursion is useful 
-    if @board.fetch_piece(piece).symbol == @board.fetch_piece(piece_to_test).symbol
+        
+    if piece.symbol == piece_to_test.symbol #escape condtion.
       check_count += 1
-      next_piece = @board.columns[piece.x_pos + x_mod][piece.y_pos + y_mod]
-      check(piece_to_test, next_piece, x_mod, y_mod, check_count)
+      next_piece = @board.fetch_piece((piece_to_test.x_pos + x_mod),(piece_to_test.y_pos + y_mod))
+      
+      check_count = check(piece_to_test, next_piece, x_mod, y_mod, check_count)
     end
     check_count      
   end    
