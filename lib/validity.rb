@@ -10,4 +10,8 @@ class Validity
   def valid_col(player_input)
      @board.columns[@board.col_indices[player_input]].length < 6
   end
+
+  def validity_check(player_input)
+    @validity.valid_player_input?(player_input) && @validity.valid_col?(player_input)
+  end
 end
