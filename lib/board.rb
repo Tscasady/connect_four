@@ -3,7 +3,7 @@ require './lib/null_piece'
 
 class Board
 
-  attr_reader :col_indices, :columns, :game_state
+  attr_reader :col_indices, :columns
 
   def initialize()
     @col_indices = {
@@ -16,7 +16,6 @@ class Board
                     "G" => 6
                   }
     @columns = [[],[],[],[],[],[],[]]
-    @game_state = 'none' #consider relocating depending on win_check and game class logic
   end
 
   def full_board?
