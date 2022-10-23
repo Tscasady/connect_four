@@ -71,14 +71,14 @@ class Board
     #If that location points to a nil, it creates a standin null piece
     #This null piece can answer the message .symbol 
 
-    piece = @columns[x_pos][y_pos]
+    #piece = @columns[x_pos][y_pos]
 
     if (x_pos < 0 || y_pos < 0) #prevents negative indices from 'wrapping' the board
       NullPiece.new 
-    elsif piece.nil? 
+    elsif @columns[x_pos].nil? || @columns[x_pos][y_pos].nil?
       NullPiece.new
     else
-      piece
+      @columns[x_pos][y_pos]
     end
   end
 
