@@ -9,7 +9,6 @@ RSpec.describe Board do
     end
 
     it 'has a column index hash' do
-      #unexpected Rspec hash complaints
       board = Board.new
 
       expect(board.col_indices).to be == {
@@ -28,40 +27,24 @@ RSpec.describe Board do
 
       expect(board.columns).to eq [[],[],[],[],[],[],[]] 
     end
-
-    it 'has a game_state' do
-      board = Board.new
-
-      expect(board.game_state).to eq 'none'
-    end
-  end
-
-  describe '#valid_player_input?' do
-    it 'returns a boolean for whether or not the input is a valid letter' do
-      board = Board.new
-      input = 'b'
-      input2 = 'Z'
-
-      expect(board.valid_player_input?(input)).to be true
-      expect(board.valid_player_input?(input2)).to be false
-    end
-  end
-
-  describe '#valid_col' do
-    it 'checks if column is full' do
-      #rewrite test with pieces
-      board = Board.new
-
-      expect(board.valid_col('D')).to be true
-    end
   end
 
   describe '#full_board?' do
-  #double check with full board
     it 'checks if the board is full' do
       board = Board.new
 
       expect(board.full_board?).to be false
+    end
+
+    it 'will return true for a full board' do
+      board = Board.new
+      board.col_indices.each_key do |column|
+        6.times do
+          board.place_piece('X', column)
+        end
+      end
+      require 'pry'; binding.pry
+      expect(board.full_board?).to be true
     end
   end
 
@@ -128,8 +111,5 @@ RSpec.describe Board do
       expect(piece3).to be_a NullPiece
       expect(piece4).to be_a NullPiece
     end
-  end
-
-
-    
+  end 
 end

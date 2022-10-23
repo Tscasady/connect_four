@@ -19,7 +19,7 @@ class Board
   end
 
   def full_board?
-    @columns.all? {|column| column.length == 7}
+    @columns.all? {|column| column.length == 6}
   end
     
   def place_piece(symbol, player_input)
