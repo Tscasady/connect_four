@@ -3,7 +3,7 @@ require './lib/piece'
 require './lib/turn'
 require './lib/null_piece'
 require './lib/game'
-# require './lib/win_check'
+require './lib/win_check'
 
 class Game
   attr_accessor :game_state
@@ -14,8 +14,8 @@ class Game
     @welcome_message = "Welcome to Connect Four\n " + "Enter p to play. Enter q to quit."
     @board = Board.new
     @turns = []
-    @validity = Validity.new
-    # @win_check = Win_check.new(@board)
+    @validity = Validity.new(@board)
+    @win_check = WinCheck.new(@board)
   end
 
   def get_main_menu_input
@@ -30,7 +30,7 @@ class Game
   def do_menu_command(letter)
       if letter == 'p'
         puts 'Choose a valid location to place your piece.'
-        #call play method
+        play
       elsif letter == 'q'
         puts 'You chose to quit the game, good-bye!'
         exit!
@@ -41,37 +41,39 @@ class Game
       end
   end
 
-  # def test_menu
-  #   welcome_message
-  #   do_menu_command(get_main_menu_input)
-  # end
   def add_turn(turn)
     @turns << turn
   end
 
   def get_symbol_for_turn
-    if turns.length.even?
+    if @turns.length.even?
       'X'
-    else turns.length.odd?
+    else @turns.length.odd?
       'O'
+    end
   end
 
   def play
     while game_state == 'none' do
-      board.display_board
+      @board.display_board
       turn = Turn.new(get_symbol_for_turn)
       add_turn(turn)
-      player_input = turn.get_input
-      #dry,recursion fix
-      if @validity.valid_player_input?(player_input) && @validity.valid_col?(player_input) true
-        move on
-      else 
-        puts "That is an invalid choice, please try again."
-        player_input = turn.get_input
-      piece = board.place_piece(turn.symbol, player_input)
-      #win_check.check_all(piece)
+      player_input = turn.get_checked_input(turn.symbol, @validity)
+      piece = @board.place_piece(turn.symbol, player_input)
+      @board.display_board
+      change_game_state(piece)
     end
     end_game_message
+  end
+
+  def change_game_state(piece)
+    if @win_check.check_all(piece)
+     if piece.symbol == 'X' 
+      game_state = 'player'
+     else
+      game_state = 'computer'
+     end
+    end
   end
 
   def end_game_message
