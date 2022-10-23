@@ -3,7 +3,7 @@ require './lib/null_piece'
 
 class Board
 
-  attr_reader :col_indices, :columns, :game_state
+  attr_reader :col_indices, :columns
 
   def initialize()
     @col_indices = {
@@ -16,19 +16,10 @@ class Board
                     "G" => 6
                   }
     @columns = [[],[],[],[],[],[],[]]
-    @game_state = 'none' #consider relocating depending on win_check and game class logic
-  end
-
-  def valid_player_input?(player_input)
-    @col_indices.keys.include?(player_input.upcase)
-  end
-
-  def valid_col(player_input)
-    @columns[@col_indices[player_input]].length < 7
   end
 
   def full_board?
-    @columns.all? {|column| column.length == 7}
+    @columns.all? {|column| column.length == 6}
   end
     
   def place_piece(symbol, player_input)
@@ -53,6 +44,10 @@ class Board
     #each element of the grid what its symbol is.
     count = 5
     grid = []
+    col_indices.each_key do |column_header|
+      grid << "#{column_header}" + ' '
+    end
+    grid << "\n" 
     6.times do
       @columns.each_index do |index| 
         x_pos = index
@@ -71,14 +66,14 @@ class Board
     #If that location points to a nil, it creates a standin null piece
     #This null piece can answer the message .symbol 
 
-    piece = @columns[x_pos][y_pos]
+    #piece = @columns[x_pos][y_pos]
 
     if (x_pos < 0 || y_pos < 0) #prevents negative indices from 'wrapping' the board
       NullPiece.new 
-    elsif piece.nil? 
+    elsif @columns[x_pos].nil? || @columns[x_pos][y_pos].nil?
       NullPiece.new
     else
-      piece
+      @columns[x_pos][y_pos]
     end
   end
 
