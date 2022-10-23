@@ -71,7 +71,9 @@ describe WinCheck do
       board.place_piece('X', 'A')
       board.place_piece('O', 'C')
       board.place_piece('X', 'D')
-      piece = board.place_piece('O', 'B')
+      board.place_piece('O', 'B')
+      piece = board.place_piece('X', 'G')
+
       
       win_check = WinCheck.new(board)
 
