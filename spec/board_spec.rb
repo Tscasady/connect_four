@@ -43,7 +43,7 @@ RSpec.describe Board do
           board.place_piece('X', column)
         end
       end
-      require 'pry'; binding.pry
+      
       expect(board.full_board?).to be true
     end
   end
@@ -78,7 +78,7 @@ RSpec.describe Board do
       board = Board.new
 
       expect(board.display_board).to be == (
-      ". . . . . . . \n. . . . . . . \n. . . . . . . \n. . . . . . . \n. . . . . . . \n. . . . . . . \n"
+      "A B C D E F G \n. . . . . . . \n. . . . . . . \n. . . . . . . \n. . . . . . . \n. . . . . . . \n. . . . . . . \n"
       )
     end
 
@@ -86,7 +86,7 @@ RSpec.describe Board do
       board = Board.new
       board.place_piece('X', 'A')
 
-      expect(board.display_board).to eq ". . . . . . . \n. . . . . . . \n. . . . . . . \n. . . . . . . \n. . . . . . . \nX . . . . . . \n"
+      expect(board.display_board).to eq "A B C D E F G \n. . . . . . . \n. . . . . . . \n. . . . . . . \n. . . . . . . \n. . . . . . . \nX . . . . . . \n"
     end
   end
 

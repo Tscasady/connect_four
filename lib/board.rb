@@ -44,6 +44,10 @@ class Board
     #each element of the grid what its symbol is.
     count = 5
     grid = []
+    col_indices.each_key do |column_header|
+      grid << "#{column_header}" + ' '
+    end
+    grid << "\n" 
     6.times do
       @columns.each_index do |index| 
         x_pos = index
