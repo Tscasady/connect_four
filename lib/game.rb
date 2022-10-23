@@ -29,7 +29,6 @@ class Game
   
   def do_menu_command(letter)
       if letter == 'p'
-        puts 'Choose a valid location to place your piece.'
         play
       elsif letter == 'q'
         puts 'You chose to quit the game, good-bye!'
@@ -55,11 +54,12 @@ class Game
 
   def play
     while game_state == 'none' do
-      @board.display_board
+      puts @board.display_board
       turn = Turn.new(get_symbol_for_turn)
       add_turn(turn)
       player_input = turn.get_checked_input(turn.symbol, @validity)
       piece = @board.place_piece(turn.symbol, player_input)
+      puts @game_state
       @board.display_board
       change_game_state(piece)
     end
