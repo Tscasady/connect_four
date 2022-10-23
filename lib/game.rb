@@ -4,10 +4,10 @@ require './lib/turn'
 require './lib/null_piece'
 require './lib/game'
 require './lib/win_check'
+require './lib/validity'
 
 class Game
-  attr_accessor :game_state
-  attr_reader :welcome_message
+
   def initialize
     #game_state win, player, computer, tie
     @game_state = 'none'
@@ -59,8 +59,8 @@ class Game
       add_turn(turn)
       player_input = turn.get_checked_input(turn.symbol, @validity)
       piece = @board.place_piece(turn.symbol, player_input)
-      puts @game_state
       @board.display_board
+      @game_state = 'tie' if @board.full_board?
       change_game_state(piece)
     end
     end_game_message
@@ -68,10 +68,10 @@ class Game
 
   def change_game_state(piece)
     if @win_check.check_all(piece)
-     if piece.symbol == 'X' 
-      game_state = 'player'
+      if piece.symbol == 'X' 
+        @game_state = 'player'
      else
-      game_state = 'computer'
+        @game_state = 'computer'
      end
     end
   end
@@ -85,7 +85,7 @@ class Game
     else 
       puts "It's a tie, no one wins."
     end
-    Game.new.play
+    Game.new.start
   end
 
 end

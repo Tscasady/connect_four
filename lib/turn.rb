@@ -11,7 +11,7 @@ class Turn
 
   def get_human_input
     puts 'Choose a valid location to place your piece.'
-    gets.chomp.upcase
+    gets.chomp.strip.upcase
   end
 
   def get_input(symbol)
