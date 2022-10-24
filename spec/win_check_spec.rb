@@ -2,13 +2,15 @@ require './lib/win_check'
 require './lib/board'
 
 describe WinCheck do
-  
+  describe '#initialize' do
     it 'exists' do
       board = Board.new
       
       expect(WinCheck.new(board)).to be_a WinCheck
     end
-    
+  end
+
+  describe '#win?' do    
     it 'recursively checks for a matching piece in all directions' do
       board = Board.new
       board.place_piece('X', 'A')
@@ -18,7 +20,7 @@ describe WinCheck do
       piece = board.place_piece('X', 'A')
       win_check = WinCheck.new(board)
   
-      expect(win_check.check_all(piece)).to be true
+      expect(win_check.win?(piece)).to be true
     end
 
     it 'can check for another win' do
@@ -30,7 +32,7 @@ describe WinCheck do
       
       win_check = WinCheck.new(board)
 
-      expect(win_check.check_all(piece)).to be true
+      expect(win_check.win?(piece)).to be true
     end
 
     it 'can check for a diagonal win' do
@@ -51,7 +53,7 @@ describe WinCheck do
 
       win_check = WinCheck.new(board)
 
-      expect(win_check.check_all(piece)).to be true
+      expect(win_check.win?(piece)).to be true
     end
 
     it 'can check for a win with pieces on either side of final peice.' do
@@ -63,7 +65,7 @@ describe WinCheck do
       
       win_check = WinCheck.new(board)
 
-      expect(win_check.check_all(piece)).to be true
+      expect(win_check.win?(piece)).to be true
     end
 
     it 'will not return false positives' do
@@ -74,9 +76,9 @@ describe WinCheck do
       board.place_piece('O', 'B')
       piece = board.place_piece('X', 'G')
 
-      
       win_check = WinCheck.new(board)
 
-      expect(win_check.check_all(piece)).to be false
+      expect(win_check.win?(piece)).to be false
     end
+  end
 end
