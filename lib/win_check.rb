@@ -10,6 +10,14 @@ class WinCheck
     #The function then recusively calls "check" in that direction until it encounters
     #a position with a symbol that does not match the original piece.
 
+  def win?(piece)
+    check_all(piece).any? do |count| 
+      count >= 3
+    end
+  end
+  
+  private
+
   def check_all(piece)
     counts = []
     #x_coord modifier
@@ -34,8 +42,7 @@ class WinCheck
         counts << total
       end
     end
-    
-    counts.any?{|count| count >= 3}
+    counts
   end
 
 
