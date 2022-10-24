@@ -7,6 +7,12 @@ require './lib/win_check'
 require './lib/validity'
 
 class Game
+  attr_reader :welcome_message,
+              :game_state,
+              :board,
+              :turns,
+              :validity, 
+              :win_check
 
   def initialize
     #game_state win, player, computer, tie
