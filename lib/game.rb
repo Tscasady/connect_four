@@ -73,7 +73,7 @@ class Game
   end
 
   def change_game_state(piece)
-    if @win_check.check_all(piece)
+    if @win_check.win?(piece)
       if piece.symbol == 'X' 
         @game_state = 'player'
      else
