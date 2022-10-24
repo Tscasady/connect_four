@@ -59,13 +59,13 @@ class Game
   end
 
   def play
-    while game_state == 'none' do
+    while @game_state == 'none' do
       puts @board.display_board
       turn = Turn.new(get_symbol_for_turn)
       add_turn(turn)
       player_input = turn.get_checked_input(turn.symbol, @validity)
       piece = @board.place_piece(turn.symbol, player_input)
-      @board.display_board
+      puts @board.display_board
       @game_state = 'tie' if @board.full_board?
       change_game_state(piece)
     end
@@ -84,9 +84,9 @@ class Game
 
   def end_game_message
     #add win_check.game_state
-    if game_state == 'player'
+    if @game_state == 'player'
       puts "Congratulations X, you've won!"
-    elsif game_state == 'computer'
+    elsif @game_state == 'computer'
       puts "Sorry the comupter has won."
     else 
       puts "It's a tie, no one wins."
