@@ -28,18 +28,21 @@ class Game
     @turns << turn
   end
 
-  def get_symbol_for_turn
+  def get_current_player(player_1, player_2)
     if @turns.length.even?
-      'X'
+      player_1
     else @turns.length.odd?
-      'O'
+      player_2
     end
   end
 
-  def some_method
-    player_1 = Player.new('player', 'X', '?') # get name method
-    player_2 = Player.new(get_player_type, 'O', '?')
-    
+  def create_player_2
+    if @config["number_of_players"] == 2
+      player_2_name = @config["player_names"][1]
+    else
+      player_2_name = "Computer"
+    end
+    player_2 = Player.new(get_player_type, 'O', player_2_name)
   end
 
   def get_player_type
@@ -51,12 +54,14 @@ class Game
   end
 
   def play
+    player_1 = Player.new('player', 'X', @config['player_names'][0])
+    player_2 = create_player_2
     while @game_state == 'none' do
       puts @board.display_board
-      turn = Turn.new(get_symbol_for_turn)
+      turn = Turn.new(get_current_player(player_1, player_2).type)
       add_turn(turn)
-      player_input = turn.get_checked_input(turn.symbol, @validity)
-      piece = @board.place_piece(turn.symbol, player_input)
+      player_input = turn.get_checked_input(turn.type, @validity)
+      piece = @board.place_piece(turn.type, player_input)
       puts @board.display_board
       @game_state = 'tie' if @board.full_board?
       change_game_state(piece)
