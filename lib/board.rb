@@ -5,21 +5,33 @@ class Board
 
   attr_reader :col_indices, :columns
 
-  def initialize()
-    @col_indices = {
-                    "A" => 0, 
-                    "B" => 1, 
-                    "C" => 2, 
-                    "D" => 3, 
-                    "E" => 4, 
-                    "F" => 5, 
-                    "G" => 6
-                  }
-    @columns = [[],[],[],[],[],[],[]]
+  def initialize(board_width, board_height)
+    @board_height = board_height
+    @col_indices = {}
+    create_col_indices(board_width)
+    @columns = []
+    create_columns(board_width)
   end
 
+  def create_columns(board_width)
+    board_width.times do
+      @columns << []
+    end
+  end
+
+  def create_col_indices(board_width)
+    keys = ("A".."Z").to_a
+  index_value = 0
+    board_width.times do
+      key = keys.shift
+      @col_indices[key] = index_value
+      index_value += 1
+    end
+  end
+      
+
   def full_board?
-    @columns.all? {|column| column.length == 6}
+    @columns.all? {|column| column.length == @board_height}
   end
     
   def place_piece(symbol, player_input)
@@ -42,13 +54,13 @@ class Board
   def display_board
     #generate 7 rows to be displayed by asking
     #each element of the grid what its symbol is.
-    count = 5
+    count = @board_height - 1
     grid = []
     col_indices.each_key do |column_header|
       grid << "#{column_header}" + ' '
     end
     grid << "\n" 
-    6.times do
+    @board_height.times do
       @columns.each_index do |index| 
         x_pos = index
         y_pos = count
