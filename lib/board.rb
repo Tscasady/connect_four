@@ -5,7 +5,7 @@ class Board
 
   attr_reader :col_indices, :columns
 
-  def initialize()
+  def initialize(board_width, board_height)
     @col_indices = {
                     "A" => 0, 
                     "B" => 1, 
@@ -15,8 +15,16 @@ class Board
                     "F" => 5, 
                     "G" => 6
                   }
-    @columns = [[],[],[],[],[],[],[]]
+    @columns = []
+    create_columns(board_width)
   end
+
+  def create_columns(board_width)
+    board_width.times do
+      @columns << []
+    end
+  end
+      
 
   def full_board?
     @columns.all? {|column| column.length == 6}
