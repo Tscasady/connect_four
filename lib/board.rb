@@ -54,7 +54,7 @@ class Board
   def display_board
     #generate 7 rows to be displayed by asking
     #each element of the grid what its symbol is.
-    count = 5
+    count = @board_height - 1
     grid = []
     col_indices.each_key do |column_header|
       grid << "#{column_header}" + ' '
