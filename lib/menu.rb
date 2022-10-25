@@ -8,7 +8,8 @@ class Menu
       "number_of_players" => 1, 
       "board_height" => 6,
       "board_width" => 7,
-      "win_condition" => 3
+      "win_condition" => 3,
+      "player_names" => []
     }
   end
 
@@ -23,6 +24,8 @@ class Menu
   def menu_commands(letter)
       if letter == 'p'
         @config["number_of_players"] = get_number_of_players
+        get_player_name
+        get_player_name if @config["number_of_players"] == 2 
         @config["board_height"] = get_new_board_height 
         @config["board_width"] = get_new_board_width
         @config["win_condition"] = get_new_win_condition  
@@ -49,6 +52,10 @@ class Menu
       puts "Invalid input."
       get_number_of_players
     end
+  end
+
+  def get_player_name
+    @config["player_names"].push(gets.chomp)
   end
 
   def get_new_board_width
