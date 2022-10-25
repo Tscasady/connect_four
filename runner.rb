@@ -6,4 +6,5 @@ require './lib/game'
 require './lib/win_check'
 require './lib/validity'
 
-Game.new.start
+game = Game.new
+game.play

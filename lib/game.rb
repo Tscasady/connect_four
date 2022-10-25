@@ -5,45 +5,22 @@ require './lib/null_piece'
 require './lib/game'
 require './lib/win_check'
 require './lib/validity'
+require './lib/menu'
 
 class Game
   attr_reader :welcome_message,
               :game_state,
-              :board,
               :turns,
-              :validity, 
-              :win_check
+              :validity
 
   def initialize
     #game_state win, player, computer, tie
-    @game_state = 'none'
-    @welcome_message = "Welcome to Connect Four\n " + "Enter p to play. Enter q to quit."
-    @board = Board.new
-    @turns = []
+    @config = Menu.new.start
+    @board = Board.new(@config["board_width"], @config["board_height"])
+    @win_check = WinCheck.new(@board, @config["win_condition"])
     @validity = Validity.new(@board)
-    @win_check = WinCheck.new(@board)
-  end
-
-  def get_main_menu_input
-      gets.chomp.downcase
-  end
-  
-  def start 
-    puts @welcome_message
-    do_menu_command(get_main_menu_input)
-  end
-  
-  def do_menu_command(letter)
-      if letter == 'p'
-        play
-      elsif letter == 'q'
-        puts 'You chose to quit the game, good-bye!'
-        exit!
-        #abort or exit file
-      else
-        puts 'Invaild entry, please try again. Enter p to play. Enter q to quit.'
-        do_menu_command(get_main_menu_input)
-      end
+    @game_state = 'none'
+    @turns = []    
   end
 
   def add_turn(turn)
@@ -91,7 +68,8 @@ class Game
     else 
       puts "It's a tie, no one wins."
     end
-    Game.new.start
+    game = Game.new.setup
+    game.play
   end
 
 end

@@ -22,7 +22,7 @@ class Menu
 
   def menu_commands(letter)
       if letter == 'p'
-        @config["get_number_of_players"] = get_number_of_players
+        @config["number_of_players"] = get_number_of_players
         @config["board_height"] = get_new_board_height 
         @config["board_width"] = get_new_board_width
         @config["win_condition"] = get_new_win_condition  
@@ -52,7 +52,7 @@ class Menu
   end
 
   def get_new_board_width
-    puts "Please enter a number, greater than 0 and no greater than 26, to set a custom width for the board.\nEnter 'd' for default width.\n"
+    puts "Please enter a number, greater than 0 and no greater than 26, to set a custom width for the board.\n" #Enter 'd' for default width.\n
     input = get_main_menu_input
     
     input = input.to_i
@@ -65,7 +65,7 @@ class Menu
   end
 
   def get_new_board_height
-    puts "Please enter a number to set a custom height for the board.\nEnter 'd' for default height."
+    puts "Please enter a number to set a custom height for the board.\n" #Enter 'd' for default height.
     input = get_main_menu_input
     
     input = input.to_i
@@ -78,10 +78,10 @@ class Menu
   end
 
   def get_new_win_condition
-    puts "Please enter the number of pieces in a row (10 or less) that counts as a win.\nEnter 'd' for default(4)."
+    puts "Please enter the number of pieces in a row (10 or less) that counts as a win.\n" #Enter 'd' for default(4).
     input = get_main_menu_input
     if input.to_i < 11
-      input.to_i + 1
+      input.to_i - 1
     elsif input == 'd'
     else
       puts "Invalid input."

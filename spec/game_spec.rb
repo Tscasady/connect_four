@@ -13,10 +13,7 @@ RSpec.describe Game do
     end
   end
 
-    it 'returns welcome string' do
-      game = Game.new
-      expect(game.welcome_message).to eq("Welcome to Connect Four\n Enter p to play. Enter q to quit.")
-    end
+
 
     it 'has game_state with a default value of none' do
       game = Game.new
