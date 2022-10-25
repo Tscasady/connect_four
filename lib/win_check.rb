@@ -1,7 +1,8 @@
 class WinCheck
   attr_reader :board
 
-  def initialize(board)
+  def initialize(board, win_condition)
+    @win_condition = win_condition
     @board = board
   end
 
@@ -12,7 +13,7 @@ class WinCheck
 
   def win?(piece)
     check_all(piece).any? do |count| 
-      count >= 3
+      count >= @win_condition
     end
   end
   
