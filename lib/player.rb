@@ -4,7 +4,7 @@ class Player
               :symbol,
               :name
 
-  def initialize(type, symbol, name)
+  def initialize(type, symbol, name = 'Computer')
     @type = type
     @symbol = symbol
     @name = name

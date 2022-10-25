@@ -9,25 +9,27 @@ require './lib/null_piece'
 RSpec.describe Player do
   describe 'initialize' do
     it 'exists' do
-      player = Player.new('player', 'X')
+      player = Player.new('player', 'X', 'Frank')
+
       expect(player).to be_a(Player)
     end
-    it 'can chose human or computer' do
-      #player 1 is human
-      #can choose if player 2 is human or computer
-      expect(player.type)
+
+    it 'can have a different type' do
+      player = Player.new('computer', 'O')
+
+      expect(player.type).to eq('computer')
     end
  
-  
     it 'is assigned a symbol' do
-      #if odd player will be 'X'
-      #if even player will be 'O'
-      player_1 = 'X'
-      expect(player.symbol).to eq('X')
+      player = Player.new('computer', 'O')
+      
+      expect(player.symbol).to eq('O')
     end
   
     it 'can return a name for player' do
-      expect(player.name)
+      player = Player.new('computer', 'O')
+
+      expect(player.name).to eq('Computer')
     end
   
   end
