@@ -22,6 +22,18 @@ RSpec.describe Board do
       }
     end
 
+    it 'can have a different set of colunm indices' do
+      board = Board.new(5, 6)
+
+      expect(board.col_indices).to be == {
+        "A" => 0, 
+        "B" => 1, 
+        "C" => 2, 
+        "D" => 3, 
+        "E" => 4, 
+      }
+    end
+
     it 'has a columns array' do
       board = Board.new(7, 6)
 
