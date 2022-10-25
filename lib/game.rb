@@ -58,10 +58,10 @@ class Game
     player_2 = create_player_2
     while @game_state == 'none' do
       puts @board.display_board
-      turn = Turn.new(get_current_player(player_1, player_2).type)
+      turn = Turn.new(get_current_player(player_1, player_2))
       add_turn(turn)
-      player_input = turn.get_checked_input(turn.type, @validity)
-      piece = @board.place_piece(turn.type, player_input)
+      player_input = turn.get_checked_input(@validity)
+      piece = @board.place_piece(turn.symbol, player_input)
       puts @board.display_board
       @game_state = 'tie' if @board.full_board?
       change_game_state(piece)
@@ -88,7 +88,7 @@ class Game
     else 
       puts "It's a tie, no one wins."
     end
-    game = Game.new.setup
+    game = Game.new
     game.play
   end
 
