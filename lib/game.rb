@@ -6,6 +6,7 @@ require './lib/game'
 require './lib/win_check'
 require './lib/validity'
 require './lib/menu'
+require './lib/player'
 
 class Game
   attr_reader :welcome_message,
@@ -32,6 +33,20 @@ class Game
       'X'
     else @turns.length.odd?
       'O'
+    end
+  end
+
+  def some_method
+    player_1 = Player.new('player', 'X', '?') # get name method
+    player_2 = Player.new(get_player_type, 'O', '?')
+    
+  end
+
+  def get_player_type
+    if @config["number_of_players"] == 1
+      "computer"
+    else 
+      "player"
     end
   end
 
