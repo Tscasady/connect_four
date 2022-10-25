@@ -10,8 +10,4 @@ class Player
     @name = name
     
   end
-
-  #def make_players
-    #if player.odd? @symbol == 'X'
-  #end
 end
