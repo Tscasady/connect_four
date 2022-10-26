@@ -8,7 +8,7 @@ class Validity
   end
 
   def valid_col?(player_input)
-     @board.columns[@board.col_indices[player_input]].length < 6
+     @board.columns[@board.col_indices[player_input]].length < @board.board_height
   end
 
   def validity_checks(player_input)

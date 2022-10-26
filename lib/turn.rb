@@ -1,8 +1,12 @@
 class Turn
-  attr_reader :symbol
+  attr_reader :player,
+              :type,
+              :symbol
 
-  def initialize(symbol)
-    @symbol = symbol
+  def initialize(player)
+    @player = player
+    @type = @player.type
+    @symbol = @player.symbol
   end
 
   def get_computer_input
@@ -14,21 +18,21 @@ class Turn
     gets.chomp.strip.upcase
   end
 
-  def get_input(symbol)
-    if symbol == 'X'
+  def get_input
+    if @type == 'player'
       get_human_input
     else
       get_computer_input
     end
   end
 
-  def get_checked_input(symbol, validity_checker)
-    player_input = get_input(symbol)
+  def get_checked_input(validity_checker)
+    player_input = get_input
     if validity_checker.validity_checks(player_input)
       player_input
     else
-       puts "That is an invalid choice, please try again."
-      get_checked_input(symbol, validity_checker)
+       puts "That is an invalid choice, please try again." if @type == "player"
+      get_checked_input(validity_checker)
     end
    
 
