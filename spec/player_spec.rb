@@ -15,19 +15,19 @@ RSpec.describe Player do
     end
 
     it 'can have a different type' do
-      player = Player.new('computer', 'O')
+      player = Player.new('computer', 'O', 'Computer')
 
       expect(player.type).to eq('computer')
     end
  
     it 'is assigned a symbol' do
-      player = Player.new('computer', 'O')
+      player = Player.new('computer', 'O', 'Computer')
       
       expect(player.symbol).to eq('O')
     end
   
     it 'can return a name for player' do
-      player = Player.new('computer', 'O')
+      player = Player.new('computer', 'O', 'Computer')
 
       expect(player.name).to eq('Computer')
     end
