@@ -22,7 +22,7 @@ class Turn
     private
 
     def get_computer_input
-      ("A".."G").to_a.sample
+      ("A".."Z").to_a.sample
     end
   
     def get_human_input
