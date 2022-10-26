@@ -3,7 +3,7 @@ require './lib/null_piece'
 
 class Board
 
-  attr_reader :col_indices, :columns
+  attr_reader :col_indices, :columns, :board_height
 
   def initialize(board_width, board_height)
     @board_height = board_height
