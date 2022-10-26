@@ -1,6 +1,6 @@
 class Menu
 
-  attr_reader :config
+  attr_reader :config, :welcome_message
 
   def initialize()
     @welcome_message = "Welcome to Connect Four\n " + "Enter p to play. Enter q to quit."
@@ -36,7 +36,6 @@ class Menu
       elsif letter == 'q'
         puts 'You chose to quit the game, good-bye!'
         exit!
-        #abort or exit file
       else
         puts 'Invaild entry, please try again. Enter p to play. Enter q to quit.'
         do_menu_command(get_main_menu_input)
@@ -65,7 +64,6 @@ class Menu
   def get_new_board_width
     puts "Please enter a number, greater than 0 and no greater than 26, to set a custom width for the board.\n" #Enter 'd' for default width.\n
     input = get_main_menu_input
-    
     input = input.to_i
     if (0 < input.to_i) && (input.to_i < 27)
       input
