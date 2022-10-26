@@ -24,8 +24,12 @@ class Menu
   def menu_commands(letter)
       if letter == 'p'
         @config["number_of_players"] = get_number_of_players
+        puts "Player One: Please enter your name"
         get_player_name
-        get_player_name if @config["number_of_players"] == 2 
+        if @config["number_of_players"] == 2 
+          puts "Player Two: Please enter your name"
+          get_player_name
+        end
         @config["board_height"] = get_new_board_height 
         @config["board_width"] = get_new_board_width
         @config["win_condition"] = get_new_win_condition  
