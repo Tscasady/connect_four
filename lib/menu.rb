@@ -38,7 +38,7 @@ class Menu
         exit!
       else
         puts 'Invaild entry, please try again. Enter p to play. Enter q to quit.'
-        do_menu_command(get_main_menu_input)
+        menu_commands(get_main_menu_input)
       end
   end
 
@@ -78,7 +78,7 @@ class Menu
     input = get_main_menu_input
     
     input = input.to_i
-    if input < 99
+    if (input < 99) && (input > 0)
       input
     else
       puts "Invalid input."
