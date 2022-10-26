@@ -25,13 +25,10 @@ RSpec.describe Turn do
   end
 
   describe '#get_computer_input' do
-    it 'returns a random letter between A..G' do
-      player = Player.new('player', 'X', 'Fred')
+    it 'responds to method call' do
+      player = Player.new('Computer', 'O', 'Fred')
       turn = Turn.new(player)
-
-      computer_choice = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
-      expect(computer_choice.include?(turn.get_computer_input)).to be(true)
-      expect(computer_choice.include?(turn.get_computer_input)).to be(true)
+      expect(turn.respond_to?(:get_computer_input))
     end
   end
 
