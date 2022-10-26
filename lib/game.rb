@@ -11,12 +11,13 @@ require './lib/player'
 class Game
   attr_reader :welcome_message,
               :game_state,
+              :board,
+              :win_check,
               :turns,
               :validity
 
-  def initialize
-    #game_state win, player, computer, tie
-    @config = Menu.new.start
+  def initialize(config = Menu.new.start)
+    @config = config
     @board = Board.new(@config["board_width"], @config["board_height"])
     @win_check = WinCheck.new(@board, @config["win_condition"])
     @validity = Validity.new(@board)
