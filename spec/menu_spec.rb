@@ -4,7 +4,7 @@ describe Menu do
   describe '#initialize'do
     it 'has a welcome_message' do
       menu = Menu.new
-      expect(menu.welcome_message).to eq "Welcome to Connect Four\n " + "Enter p to play. Enter q to quit."
+      expect(menu.welcome_message).to eq "Welcome to Connect MORE\n " + "Enter p to play. Enter q to quit."
     end
 
     it 'has a config hash' do
