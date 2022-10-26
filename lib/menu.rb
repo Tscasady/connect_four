@@ -3,7 +3,7 @@ class Menu
   attr_reader :config, :welcome_message
 
   def initialize()
-    @welcome_message = "Welcome to Connect Four\n " + "Enter p to play. Enter q to quit."
+    @welcome_message = "Welcome to Connect MORE\n " + "Enter p to play. Enter q to quit."
     @config = {
       "number_of_players" => 1, 
       "board_height" => 6,
