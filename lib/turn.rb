@@ -17,6 +17,7 @@ class Turn
        puts "That is an invalid choice, please try again." if @type == "player"
       get_checked_input(validity_checker)
     end
+  end
 
     private
 
@@ -36,9 +37,6 @@ class Turn
         get_computer_input
       end
     end
-   
-
-  end
 end
 
 
