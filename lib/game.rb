@@ -56,8 +56,8 @@ class Game
   def play
     player_1 = Player.new('player', 'X', @config['player_names'][0])
     player_2 = create_player_2
+    puts @board.display_board
     while @game_state == 'none' do
-      puts @board.display_board
       turn = Turn.new(get_current_player(player_1, player_2))
       add_turn(turn)
       player_input = turn.get_checked_input(@validity)
@@ -74,7 +74,7 @@ class Game
       if piece.symbol == 'X' 
         @game_state = 'player'
      else
-        @game_state = 'computer'
+        @game_state = 'player_2'
      end
     end
   end
@@ -82,9 +82,9 @@ class Game
   def end_game_message
     #add win_check.game_state
     if @game_state == 'player'
-      puts "Congratulations X, you've won!"
-    elsif @game_state == 'computer'
-      puts "Sorry the comupter has won."
+      puts "#{@turns.last.player.name} has won!"
+    elsif @game_state == 'player_2'
+      puts "#{@turns.last.player.name} has won!"
     else 
       puts "It's a tie, no one wins."
     end
