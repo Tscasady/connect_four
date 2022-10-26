@@ -31,7 +31,7 @@ class Turn
     if validity_checker.validity_checks(player_input)
       player_input
     else
-       puts "That is an invalid choice, please try again."
+       puts "That is an invalid choice, please try again." if @type == "player"
       get_checked_input(validity_checker)
     end
    
